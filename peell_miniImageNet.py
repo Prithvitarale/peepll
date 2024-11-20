@@ -499,8 +499,8 @@ def communication(
 
 
         aa_thresholds, entropy_threshold = [0.73], [1]
-        # aa_thresholds, entropy_threshold = np.arange(0, 1.0, 0.01).tolist(), np.arange(0.9, 1.0, 0.001).tolist()
-        # aa_thresholds, entropy_threshold = np.arange(0, 1.0, 0.01).tolist(), np.arange(0, 1.0, 0.01).tolist()
+        if config.true_results == 1:
+            aa_thresholds, entropy_threshold = np.arange(0, 1.0, 0.01).tolist(), np.arange(0, 1.0, 0.01).tolist()
         print(f"All Confidence thresholds: {aa_thresholds}")
         print(f"All Entropy thresholds: {entropy_threshold}")
         pick_all_corr = []
@@ -860,7 +860,8 @@ def communication(
         total_correct_experiment.append(np.sum(fn_correct_mask))
         # pdb.set_trace()
         # ``
-        # return
+        if config.true_results == 1:
+            return
 
 
         # ============================================================ #
@@ -1346,7 +1347,7 @@ with tf.device('/GPU:0'):
         # config.dataset = 'cifar10.load_data()'
 
     # cifar100
-    elif experiment_version == 2.2:
+    elif experiment_version == 2.2 or experiment_version == 5.0:
         config.learning_type = 3
         # config.learning_type = 2 # IMPORTANT: CHANGE for communication
         config.figure_i = "2.0_1"
@@ -1380,6 +1381,10 @@ with tf.device('/GPU:0'):
         [60, 70, 80, 90, 50, 39, 7, 27, 33, 45, 46, 47, 48, 93, 94, 95, 96, 17, 25, 49]]
         config.num_agents = 20
         config.all_classes = list(range(100))
+        config.true_results = 0
+        if experiment_version == 5.0:
+            config.true_results = 1
+            config.batch_size_inner_loop = 1000
         # config.dataset = 'cifar100.load_data()'
 
     elif experiment_version == 2.21:

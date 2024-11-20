@@ -495,8 +495,9 @@ def communication(
         print(f"query_agent_confidences shape: {query_agent_confidences.shape}")
         avg_qa_conf.append(np.mean(query_agent_confidences))
         aa_thresholds, entropy_threshold = [0.585], [1]
-        # aa_thresholds, entropy_threshold = np.arange(0, 1.0, 0.01).tolist(), np.arange(0, 1.0, 0.01).tolist()
-        # aa_thresholds, entropy_threshold = np.arange(0, 1.0, 0.01).tolist(), np.arange(0.9, 1.0, 0.001).tolist()
+        if config.true_results == 1:
+            aa_thresholds, entropy_threshold = np.arange(0, 1.0, 0.01).tolist(), np.arange(0, 1.0, 0.01).tolist()
+        
         print(f"All Confidence thresholds: {aa_thresholds}")
         print(f"All Entropy thresholds: {entropy_threshold}")
         pick_all_corr = []
@@ -853,6 +854,8 @@ def communication(
         total_correct_experiment.append(np.sum(fn_correct_mask))
         # pdb.set_trace()
         # ``
+        if config.true_results == 1:
+            return
         # return
 
 
@@ -1367,6 +1370,7 @@ with tf.device('/GPU:0'):
         config.true_results = 0
         if experiment_version == 5.0:
             config.true_results = 1
+            config.batch_size_inner_loop = 1000
 
     
     elif experiment_version == 2.21:
