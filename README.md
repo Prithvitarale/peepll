@@ -55,7 +55,7 @@ Use the following mappings for `(a, b, c)`:
 - Results are averaged over multiple runs, as described in the paper. For consistency, ensure the random seeds are set as in the scripts.
 - Logs and outputs will include key metrics and figures to match the results in the paper.
 
-### **5. Our Algorithms
+### **5. Our Algorithms**
 We have thoroughly documented all our functions, and our introduced algorithms (TRUE, ICF, Majority, MCG, Dynamic Memory Update). Following are where you can find each algorithm:
 - **TRUE:** Lines 
 - **ICF:** Lines
