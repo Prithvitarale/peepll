@@ -52,11 +52,11 @@ Use the following mappings for `(a, b, c)`:
 
 ### **4. Our Algorithms**
 We have thoroughly documented all our functions, and our introduced algorithms (TRUE, ICF, Majority, MCG, Dynamic Memory Update). Following are where you can find each algorithm:
-- **TRUE:** Lines 
-- **ICF:** Lines
-- **Majority:** Lines
-- **MCG:** Lines
-- ***Dynamic Memory-Update:*** Lines
+- **TRUE:** Lines 301-354
+- **ICF:** Lines 476-493 and Lines 534-553
+- **Majority:** Lines 656-659
+- **MCG:** Lines 651-654
+- ***Dynamic Memory-Update:*** Lines 235-299
 
 ### **5. Notes for Reproducibility**
 - Important: This code is designed to run on CPU only. GPU support will be added soon.
