@@ -503,8 +503,8 @@ def communication(
         
         query_agent_confidences = q_c
         print(f"query_agent_confidences shape: {query_agent_confidences.shape}")
-        avg_qa_conf.append(np.mean(query_agent_confidences))
         aa_thresholds, entropy_threshold = [0.585], [1]
+        avg_qa_conf.append(np.mean(query_agent_confidences))
         if config.true_results == 1:
             aa_thresholds, entropy_threshold = np.arange(0, 1.0, 0.01).tolist(), np.arange(0, 1.0, 0.01).tolist()
         
@@ -889,7 +889,6 @@ def communication(
         fn_maj_orig_cor = np.sum(np.bitwise_and(fn_correct_mask, fn_maj_orig.astype(int)).astype(int))
         fn_maj_orig_clash_cor = np.sum(np.bitwise_and(fn_correct_mask, fn_maj_orig_clash.astype(int)).astype(int))
         fn_entropy_cor = np.sum(np.bitwise_and(fn_correct_mask, fn_entropy.astype(int)).astype(int))
-
         # ============================================================ #
         ####################  END: False Negatives  ####################
         # ============================================================ #
