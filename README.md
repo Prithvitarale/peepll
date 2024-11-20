@@ -23,7 +23,7 @@ To install all necessary dependencies, create a Conda environment using the prov
 ### **2. Run the Scripts**
 Use the following commands to run experiments for the respective datasets:
 
-- CIFAR100: `python3 peell_threshold_experiment.py`
+- CIFAR100: `python3 peell_cifar.py`
 
 - MiniImageNet: `python3 peell_miniImageNet.py`
 
