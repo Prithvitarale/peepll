@@ -59,7 +59,7 @@ We have thoroughly documented all our functions, and our introduced algorithms (
 - ***Dynamic Memory-Update:*** Lines
 
 ### **5. Notes for Reproducibility**
-- Important: This code is designed to run on CPU only. GPU support is coming soon.
+- Important: This code is designed to run on CPU only. GPU support will be added soon.
 - Results are averaged over multiple runs, as described in the paper. For consistency, ensure the random seeds are set as in the scripts.
 - Logs and outputs will include key metrics and figures to match the results in the paper.
 
