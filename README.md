@@ -33,7 +33,7 @@ By default, these will reproduce the TRUE + REFINE results for CIFAR100 and TRUE
 ### **3. Customizing Communication Protocols**
 To run different communication protocols, update the following lines in the script:
 
-#### 1. Line 857: Modify (a, b, c) values:
+#### 1. Line 905-906: Modify (a, b, c) values:
 - learn_x, learn_y = a, b
 - learn_confidences = c
 
@@ -48,7 +48,7 @@ Use the following mappings for `(a, b, c)`:
 - **TRUE + MCG + ICF (REFINE)**: `shared_x_m_e_orig, shared_y_m_e_orig, confidences_x_m_e_orig`
 
 
-#### 2. Line 493: Adjust the aa_threshold if needed: aa_threshold = [value]
+#### 2. Line 506: Adjust the aa_threshold if needed: aa_threshold = [value]
 
 ### **4. Our Algorithms**
 We have thoroughly documented all our functions, and our introduced algorithms (TRUE, ICF, Majority, MCG, Dynamic Memory Update). Following are where you can find each algorithm:
