@@ -29,6 +29,15 @@ Use the following commands to run experiments for the respective datasets:
 
 By default, these will reproduce the TRUE + REFINE results for CIFAR100 and TRUE + Majority results for MiniImageNet, our best performing Communication Protocols for respective datasets.
 
+For visualizing results, 
+- TRUE vs Entropy: `python3 ./visualization/compare-entropy-ours.py`
+- Selective Response Filters Comparison - `python3 ./visualization/compare-filtering.py`
+- Lifelong Learning (Performance on (1) pre-trained data, (2) untrained data (future tasks), (3) Past Trained (tasks introduced so far), (4) Complete Test set)
+  - `python3 ./visualization/lifelong_results.py`
+ 
+We have included simple and short instructions to run each of these files correctly (filename etc.) in the respective files.
+
+
 ### **3. Customizing Communication Protocols**
 To run different communication protocols, update the following lines in the script:
 
