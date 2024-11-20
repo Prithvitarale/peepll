@@ -307,37 +307,46 @@ def identify_from_memory_scalable_forkl(model, queries, p_batch, confN, ms_score
 
     memory = np.concatenate([model.memorized_data], 0)
     memory = tf.squeeze(memory, axis=4)
-    mem_preds, memory_z, z_means, z_logs = model(memory) # 900, 128
-    q_pred, queries_z, q_mean, q_log = model(queries) # 128,128
+    mem_preds, memory_z, z_means, z_logs = model(memory)
+    q_pred, queries_z, q_mean, q_log = model(queries)
 
     all_scores = []
-    for q, query in enumerate(queries):
+    for q, query in enumerate(queries): # For each query to the model
+
+        # Get memory samples of the predicted class for this query
         matching_indices = np.isin(model.memorized_targets, pred[q])
         matching_indices = np.where(matching_indices)[0].flatten()
-        if len(matching_indices) == 0:
+
+        if len(matching_indices) == 0: # If no memory, 0 confidence
             all_scores.append(0)
         else:
-            matching_z_means = np.array(z_means)[matching_indices, :] # 50, 128
-            matching_z_logs = np.array(z_logs)[matching_indices, :] # 50, 128
-            matching_z = np.array(memory_z)[matching_indices, :] # 50, 128
-            query_var = np.exp(q_log[q, :]) # 128
-            memory_var = np.exp(matching_z_logs) # 50, 128
+            # Get z_means for memory of predicted class for this query
+            matching_z_means = np.array(z_means)[matching_indices, :]
+            matching_z_logs = np.array(z_logs)[matching_indices, :]
+            matching_z = np.array(memory_z)[matching_indices, :]
+            query_var = np.exp(q_log[q, :])
+            # Get z_var for memory of predicted class
+            memory_var = np.exp(matching_z_logs)
             mean_memory_var = np.mean(memory_var, axis=0)
             mean_memory_mean = np.mean(matching_z_means, axis=0)
 
             entropy = confN[q][0]
             ms = ms_scores[q][0]
 
+
+            # Dispersion Distance
             uncertainty_score = np.exp(-0.01*np.sum(np.abs(mean_memory_var-query_var)))
             uncertainty_score = (uncertainty_score - 0.4)/(0.5)
             uncertainty_score = max(uncertainty_score, 0)
             uncertainty_score = min(uncertainty_score, 1)
 
-
+            # Semantic Distance
             mean_distance = np.exp(-0.1*tf.norm(mean_memory_mean-q_mean[q, :]))
             mean_distance = (mean_distance - 0.4)/(0.4)
             mean_distance = max(mean_distance, 0)
             mean_distance = min(mean_distance, 1)
+
+            # Average of Semantic, Dispersion, and Entropy Scores
             all_scores.append((mean_distance + uncertainty_score + entropy)/3)
     return tf.convert_to_tensor(all_scores, dtype=tf.float32)
 
