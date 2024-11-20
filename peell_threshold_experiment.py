@@ -228,6 +228,10 @@ def datafilter_perclass(X_train, Y_train, num_per_class, classes, negate=False):
 
     return np.concatenate([X_new], 0), np.concatenate([Y_new], 0)
 
+
+
+
+
 # ================================================================================================#
                             ### DYNAMIC MEMORY UPDATE METHOD ###
 # Function Description:
@@ -332,7 +336,6 @@ def identify_from_memory_scalable_forkl(model, queries, p_batch, confN, ms_score
 
             entropy = confN[q][0]
             ms = ms_scores[q][0]
-
 
             # Dispersion Distance
             uncertainty_score = np.exp(-0.01*np.sum(np.abs(mean_memory_var-query_var)))
@@ -450,7 +453,6 @@ def communication(
         confN = [np.expand_dims(entropy_mapped, 1)]
         ms = [np.expand_dims(tf.math.reduce_max(pred_orig, 1), 1)]
         q_c = identify_from_memory_scalable_forkl(models[0], xt, np.squeeze(predN[0], axis=1), confN[0], ms[0])
-
         conf_recon_p = [tf.argmax(pred_orig, 1)]
         classes_they_think_they_know = []
         all_confidences = []
@@ -459,7 +461,6 @@ def communication(
         query_packet = (xt, q_c)
         print(f'xt.shape: {xt.shape}')
         for i, model in enumerate(models[1:]):
-
             # call and get responses
             print(f'Model {i}')
             predN_append, conf_recon_p_append, ms_append, confN_append, classes_they_think_they_know_append, confidences = call_response_agent(model, query_packet)
@@ -547,7 +548,6 @@ def communication(
             post_clash_pick_mask_all = post_clash_pick_mask_all.reshape(np.array(conf_recon_p).shape)
             # Confident Responses + ICF Mask
             democratic_mask_experimental = democratic_mask & post_clash_pick_mask_all.T
-
             # ============================================================= #
             ######################### END: ICF #########################
             # ============================================================= #
@@ -647,6 +647,7 @@ def communication(
                         else:
                             confidence_dict[response].append(confidence)
 
+                    
                     # Mean-Democratic
                     # Group agents by response, take most confident group
                     average_confidences_orig = {response: np.mean(confidences) for response, confidences in confidence_dict.items()}
