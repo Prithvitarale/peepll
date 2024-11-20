@@ -51,9 +51,16 @@ Use the following mappings for `(a, b, c)`:
 #### 2. Line 493: Adjust the aa_threshold if needed: aa_threshold = [value]
 
 ### **4. Notes for Reproducibility**
-Important: This code is designed to run on CPU only. GPU support is coming soon.
+- Important: This code is designed to run on CPU only. GPU support is coming soon.
+- Results are averaged over multiple runs, as described in the paper. For consistency, ensure the random seeds are set as in the scripts.
+- Logs and outputs will include key metrics and figures to match the results in the paper.
 
-Results are averaged over multiple runs, as described in the paper. For consistency, ensure the random seeds are set as in the scripts.
+### **5. Our Algorithms
+We have thoroughly documented all our functions, and our introduced algorithms (TRUE, ICF, Majority, MCG, Dynamic Memory Update). Following are where you can find each algorithm:
+- **TRUE:** Lines 
+- **ICF:** Lines
+- **Majority:** Lines
+- **MCG:** Lines
+- ***Dynamic Memory-Update:*** Lines
 
-Logs and outputs will include key metrics and figures to match the results in the paper.
 
