@@ -6,22 +6,23 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
+##############################################################################
 ###### START: Experiment Setup #####
 
-# Set FILENAMES for each experiment type on lines
+# A. Set FILENAMES for each experiment type on lines 28-56.
+# This is the 'graphing_data' (variable) saved in the very end of "peell_cifar.py" or "peell_miniImageNet.py"
 
-# Set Experiment Number
+# B. Set Experiment Number
 # 1 -> QA Accuracy on Pretrained data
 # 2 -> QA Accuracy on Untrained data (Future Tasks)
 # 3 -> QA Accuracy on Past data (tasks learned until that timestep)
 # 4 -> QA Accuracy on Complete Test Set
 experiment_number = 1
 
-# Find Figure saved as 'performances.png'
+# C. Find Figure saved as 'performances.png'
 
 ###### END: Experiment Setup #####
-
+##############################################################################
 
 # TRUE
 with open('./finalruns_cifar100_reducing_meorig_2.0_1.pkl', 'rb') as f:
@@ -54,6 +55,16 @@ with open('./finalruns_imgnet_ent_s1_3_2.0_1.pkl', 'rb') as f:
 # Supervised + Replay (ER)
 with open('./finalruns_imgnet_single_s1_2.0_1.pkl', 'rb') as f:
     info_single = pickle.load(f)
+
+
+
+
+
+
+
+##############################################################################
+#                                   Code
+##############################################################################
 
 
 def moving_average(data, window_size):

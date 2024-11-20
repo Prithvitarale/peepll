@@ -9,31 +9,41 @@ def load_data(filename):
     with open(filename, 'rb') as f:
         return pickle.load(f)
 
+##############################################################################
 ###### START: Experiment Setup #####
 
-# Set FILENAME
+# A. Set FILENAME - This is the 'experiments_data' (variable)
+# saved in the very end of "peell_cifar.py" or "peell_miniImageNet.py"
 # filenames2 = [f'./_{i}thresh_exper_data_2.0_1.pkl' for i in range(49, 54)]
 filenames2 = [f'./_{i}thresh_exper_data_2.0_1.pkl' for i in range(49, 54)]
 
-# Set Experiment type -
-# 1 for Total RA responses on x-axis
-# 2 for Threshold on x-axis
+# B. Set Experiment type -
+# 1 -> Total RA responses on x-axis
+# 2 -> Threshold on x-axis
 experiment_type = 1
 
-# Set Dataset - 
-# 1 - > CIFAR100
+# C. Set Dataset - 
+# 1 -> CIFAR100
 # 2 -> MiniImageNet
 dataset = 2
 
-# Find Figures saved as 'vis-entropy-oursc.png' and 'vis-comm-io-better-confidencec.png'
+# D. Find Figures saved as 'vis-entropy-oursc.png' and 'vis-comm-io-better-confidencec.png'
 
 ###### END: Experiment Setup #####
+##############################################################################
 
+
+
+
+
+
+
+
+##############################################################################
+#                                   Code
+##############################################################################
 
 all_data_ = [[load_data(f) for f in filenames2]]
-
-
-
 import matplotlib as mpl
 sty ='seaborn-v0_8'
 mpl.style.use(sty)

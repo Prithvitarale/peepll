@@ -10,21 +10,33 @@ def load_data(filename):
     with open(filename, 'rb') as f:
         return pickle.load(f)
 
+##############################################################################
 ###### START: Experiment Setup #####
 
-# Set FILENAME
+# A. Set FILENAME - This is the 'experiments_data' (variable)
+# saved in the very end of "peell_cifar.py" or "peell_miniImageNet.py"
 filenames2 = [f'./_{i}thresh_exper_data_2.0_1.pkl' for i in range(49, 54)]
 # filenames2 = [f'./finalruns_imgnet_expre{i}_data_2.0_1.pkl' for i in [1, 2, 3, 4]]
 
-# Set Experiment type -
+# B. Set Experiment type -
 # 1 for Total RA responses on x-axis
 # 2 for Threshold on x-axis
 experiment_type = 1
 
-# Find Figure saved as 'vis-compare-filter.png'
+# C. Find Figure saved as 'vis-compare-filter.png'
 
 ###### END: Experiment Setup #####
+##############################################################################
 
+
+
+
+
+
+
+##############################################################################
+#                                   Code
+##############################################################################
 
 all_data_ = [[load_data(f) for f in filenames2]]
 
