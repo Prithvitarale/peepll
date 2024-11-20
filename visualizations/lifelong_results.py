@@ -9,7 +9,7 @@ import seaborn as sns
 ##############################################################################
 ###### START: Experiment Setup #####
 
-# A. Set FILENAMES for each experiment type on lines 28-56.
+# A. Set FILENAMES for each experiment type on lines 25-53.
 # This is the 'graphing_data' (variable) saved in the very end of "peell_cifar.py" or "peell_miniImageNet.py"
 
 # B. Set Experiment Number
@@ -20,9 +20,6 @@ import seaborn as sns
 experiment_number = 1
 
 # C. Find Figure saved as 'performances.png'
-
-###### END: Experiment Setup #####
-##############################################################################
 
 # TRUE
 with open('./finalruns_cifar100_reducing_meorig_2.0_1.pkl', 'rb') as f:
@@ -55,6 +52,14 @@ with open('./finalruns_imgnet_ent_s1_3_2.0_1.pkl', 'rb') as f:
 # Supervised + Replay (ER)
 with open('./finalruns_imgnet_single_s1_2.0_1.pkl', 'rb') as f:
     info_single = pickle.load(f)
+
+
+###### END: Experiment Setup #####
+##############################################################################
+
+
+
+
 
 
 
