@@ -1,4 +1,4 @@
-name: shell
+name: peepll
 channels:
   - conda-forge
   - defaults
@@ -200,4 +200,3 @@ dependencies:
       - werkzeug==2.3.4
       - wrapt==1.14.1
       - zipp==3.17.0
-prefix: /home/ptarale_umass_edu/miniconda3/envs/shell
