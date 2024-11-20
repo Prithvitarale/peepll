@@ -1152,8 +1152,6 @@ def build_model_data(
     y_train_i = keras.utils.to_categorical(y_train_i, num_classes)
     y_test_i = keras.utils.to_categorical(y_test_i, num_classes)
     model_i = VAE(input_shape, confidence_threshold=confidence_threshold, latent_dim=512)
-    
-    # Working
     optimizer = tf.keras.optimizers.Adam(learning_rate = 0.00004, weight_decay=0.28)#b7 imgnet
     model_i.compile(optimizer=optimizer, metrics=["accuracy"])
     return x_train_i, y_train_i, x_test_i, y_test_i, model_i
@@ -1205,7 +1203,6 @@ def pretrain_model(
 
     # Split the data into training and validation sets
     split_index = int(0.8 * len(x_train))  # 80% for training, 20% for validation
-
     x_train_new = x_train_shuffled[:split_index]
     y_train_new = y_train_shuffled[:split_index]
     confidences_train_new = confidences_supervised_shuffled[:split_index]
@@ -1275,13 +1272,7 @@ with tf.device('/GPU:0'):
     # config.input_shape = (28, 28, 1)
     config.batch_size = 256
     config.epochs = 50
-
-
-    # config.epochs_inner_loop = 1
     config.epochs_inner_loop = 1
-
-
-    # config.batch_size_inner_loop = 1000
     config.batch_size_inner_loop = 20
 
     config.knowledge_sharing_len = -1
@@ -1298,9 +1289,7 @@ with tf.device('/GPU:0'):
     config.class_wise = True
     config.dataset = 'keras.datasets.cifar100.load_data()'
     config.all_classes = list(range(100))
-
     config.learning_type = None
-
     config.model_classes = []
     
     #####################
