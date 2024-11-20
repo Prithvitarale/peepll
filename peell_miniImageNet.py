@@ -320,7 +320,7 @@ def identify_from_memory_scalable_forkl(model, queries, p_batch, confN, ms_score
         # Get memory samples of the predicted class for this query
         matching_indices = np.isin(model.memorized_targets, pred[q])
         matching_indices = np.where(matching_indices)[0].flatten()
-        
+
         if len(matching_indices) == 0: # If no memory, 0 confidence
             all_scores.append(0)
         else:
@@ -419,7 +419,7 @@ def communication(
     # ================================================================#
     # ================================================================#
     #                   PEEPLL with communication
-    # If you need to change communication protocol, change (a, b, c) on line 857:
+    # If you need to change communication protocol, change (a, b, c) on line 905-906:
     # learn_x, learn_y = a, b
     # learn_confidences = c
     # 
@@ -432,7 +432,7 @@ def communication(
     # TRUE + MCG                -> shared_x_m_orig, shared_y_m_orig, confidences_x_m_orig
     # TRUE + MCG + ICF (REFINE) -> shared_x_m_e_orig, shared_y_m_e_orig, confidences_x_m_e_orig
     # 
-    # Set the threshold on line 493, aa_threshold:
+    # Set the threshold on line 506, aa_threshold:
     # Entropy                   -> 
     # TRUE                      -> 
     # TRUE + ICF                -> 
@@ -492,7 +492,6 @@ def communication(
                     # Does this agent agree with this response?
                     all_knowing_agent_agree_info[i].append(flattened_p[i] == know_agent_preds[i%config.batch_size_inner_loop])
 
-
         pick_model_only_c = np.squeeze(np.array(confN).T, 0)
         # pick_model_only_c = np.squeeze(np.array(ms).T, 0)
         print('no reducing with confn')
@@ -503,7 +502,6 @@ def communication(
         
         query_agent_confidences = q_c
         avg_qa_conf.append(np.mean(query_agent_confidences))
-
 
         aa_thresholds, entropy_threshold = [0.73], [1]
         if config.true_results == 1:
@@ -892,6 +890,8 @@ def communication(
         # ============================================================ #
         ####################  END: False Negatives  ###################
         # ============================================================ #
+
+
 
         # ============================================================ #
         ######################## START: Learn  ########################

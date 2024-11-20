@@ -416,7 +416,7 @@ def communication(
     # ================================================================#
     # ================================================================#
     #                   PEEPLL with communication
-    # If you need to change communication protocol, change (a, b, c) on line 857:
+    # If you need to change communication protocol, change (a, b, c) on line 905-906:
     # learn_x, learn_y = a, b
     # learn_confidences = c
     # 
@@ -429,7 +429,7 @@ def communication(
     # TRUE + MCG                -> shared_x_m_orig, shared_y_m_orig, confidences_x_m_orig
     # TRUE + MCG + ICF (REFINE) -> shared_x_m_e_orig, shared_y_m_e_orig, confidences_x_m_e_orig
     # 
-    # Set the threshold on line 493, aa_threshold:
+    # Set the threshold on line 506, aa_thresholds:
     # Entropy                   -> 
     # TRUE                      -> 
     # TRUE + ICF                -> 
