@@ -7,7 +7,7 @@ This repository contains the implementation of the **Peer Parallel Lifelong Lear
   - For **CIFAR100**, the script runs **TRUE + REFINE** (our best-performing protocol).  
   - For **MiniImageNet**, the script runs **TRUE + Majority** (our best-performing protocol).
 - **Experiment Selection**:  
-  Use the `experiment_number` variable on line x to choose between experiments for **PEEPLL with communication (2.2)** or **TRUE results (5)**:
+  Use the `experiment_number` variable on line 1304 to choose between experiments for **PEEPLL with communication (2.2)** or **TRUE results (5)**:
   - `2.2` → PEEPLL with Communication (default)
   - `5.0` → TRUE Results
 
