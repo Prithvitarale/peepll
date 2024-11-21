@@ -58,6 +58,8 @@ Use the following mappings for `(a, b, c)`:
 - **TRUE + MCG**: `shared_x_m_orig, shared_y_m_orig, confidences_x_m_orig`
 - **TRUE + MCG + ICF (REFINE)**: `shared_x_m_e_orig, shared_y_m_e_orig, confidences_x_m_e_orig`
 
+Recommended thresholds for a 1:1 Sharing Ratio are given on lines 435-442.
+
 
 #### 2. Line 506: Adjust the aa_threshold if needed: aa_threshold = [value]
 
@@ -70,7 +72,7 @@ We have thoroughly documented all our functions, and our introduced algorithms (
 - **Majority:** Lines 656-659
 
 ### **6. Notes for Reproducibility**
-- Important: This code is designed to run on CPU only. GPU support will be added soon.
+- Important: This code is designed to run on CPU only. All our TMLR results were reported by running experiments on the CPU. GPU support will be added soon.
 - Results are averaged over multiple runs, as described in the paper. For consistency, ensure the random seeds are set as in the scripts.
 - Logs and outputs will include key metrics and figures to match the results in the paper.
 
