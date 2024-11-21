@@ -433,13 +433,16 @@ def communication(
     # TRUE + MCG + ICF (REFINE) -> shared_x_m_e_orig, shared_y_m_e_orig, confidences_x_m_e_orig
     # 
     # Set the threshold on line 506, aa_threshold:
-    # Entropy                   -> 
-    # TRUE                      -> 
-    # TRUE + ICF                -> 
-    # TRUE + Majority           -> 
-    # TRUE + Majority + ICF     -> 
-    # TRUE + MCG                -> 
-    # TRUE + MCG + ICF (REFINE) ->
+    # Entropy                   -> 0.92
+    # TRUE                      -> 0.745
+    # TRUE + ICF                -> 0.635
+    # TRUE + Majority           -> 0.73
+    # TRUE + Majority + ICF     -> 0.623
+    # TRUE + MCG                -> 0.73
+    # TRUE + MCG + ICF (REFINE) -> 0.63
+    # These are suggested values for a 1:1 Sharing Ratio. The QA will be introduced
+    # 20k queries in total, so further adjust the thresholds if you do not observe
+    # 20k responses in total.
     # ================================================================#
     # ================================================================#
     elif learning_config.learning_setup == 3:

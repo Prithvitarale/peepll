@@ -433,13 +433,16 @@ def communication(
     # TRUE + MCG + ICF (REFINE) -> shared_x_m_e_orig, shared_y_m_e_orig, confidences_x_m_e_orig
     # 
     # Set the threshold on line 506, aa_thresholds:
-    # Entropy                   -> 
-    # TRUE                      -> 
-    # TRUE + ICF                -> 
-    # TRUE + Majority           -> 
-    # TRUE + Majority + ICF     -> 
-    # TRUE + MCG                -> 
-    # TRUE + MCG + ICF (REFINE) ->
+    # Entropy                   -> 0.9
+    # TRUE                      -> 0.79
+    # TRUE + ICF                -> 0.61
+    # TRUE + Majority           -> 0.77
+    # TRUE + Majority + ICF     -> 0.6
+    # TRUE + MCG                -> 0.75
+    # TRUE + MCG + ICF (REFINE) -> 0.585
+    # These are suggested values for a 1:1 Sharing Ratio. The QA will be introduced
+    # 20k queries in total, so further adjust the thresholds if you do not observe
+    # 20k responses in total. Note: Decrease threshold to increase received responses.
     # ================================================================#
     # ================================================================#
 
@@ -1639,6 +1642,7 @@ with tf.device('/GPU:0'):
         for mi in modelN:
             mi.build(input_shape_b)
         # Working (1/27), (5/9)
+        # -models
         for i, mi in enumerate(modelN):
             mi.load_weights(f'/work/pi_hava_umass_edu/prithvi/save_cifar100/save_cifar100/{i+1}_newdatakl5_{config.figure_i}.h5')
             print(f'loaded model {i}')
