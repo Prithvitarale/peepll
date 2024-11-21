@@ -58,6 +58,8 @@ Use the following mappings for `(a, b, c)`:
 - **TRUE + MCG**: `shared_x_m_orig, shared_y_m_orig, confidences_x_m_orig`
 - **TRUE + MCG + ICF (REFINE)**: `shared_x_m_e_orig, shared_y_m_e_orig, confidences_x_m_e_orig`
 
+Recommended thresholds for a 1:1 Sharing Ratio are given on lines 435-442.
+
 
 #### 2. Line 506: Adjust the aa_threshold if needed: aa_threshold = [value]
 
