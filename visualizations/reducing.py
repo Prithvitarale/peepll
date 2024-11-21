@@ -13,6 +13,8 @@ sns.set_style("whitegrid", {
 ##############################################################################
 ###### START: Experiment Setup #####
 
+# Note: Run the PEEPLL with Communication Experiment with lines 618-622 uncommented.
+
 # A. Set FILENAME - This is the 'experiments_data' (variable)
 # saved in the very end of "peell_cifar.py" or "peell_miniImageNet.py"
 with open('./finalruns_imgnet_reducingqc3_data_2.0_1.pkl', 'rb') as f:
