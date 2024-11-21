@@ -20,7 +20,10 @@ To install all necessary dependencies, create a Conda environment using the prov
 - `conda env create -f environment.yml`
 - `conda activate <your_env_name>`
 
-### **2. Run the Scripts**
+### **2. Saved Models**
+If you wish to use our saved pre-trained models, they can be found [here](https://drive.google.com/drive/folders/1kA5V5Rp-ZN5QgPtfKJ8SusCl8DEKm42L?usp=sharing).
+
+### **3. Run the Scripts**
 Use the following commands to run experiments for the respective datasets:
 
 - CIFAR100: `python3 peell_cifar.py`
@@ -38,7 +41,7 @@ For visualizing results,
 We have included simple and short instructions to run each of these files correctly (filename etc.) in the respective files.
 
 
-### **3. Customizing Communication Protocols**
+### **4. Customizing Communication Protocols**
 To run different communication protocols, update the following lines in the script:
 
 #### 1. Line 905-906: Modify (a, b, c) values:
@@ -58,7 +61,7 @@ Use the following mappings for `(a, b, c)`:
 
 #### 2. Line 506: Adjust the aa_threshold if needed: aa_threshold = [value]
 
-### **4. Our Algorithms**
+### **5. Our Algorithms**
 We have thoroughly documented all our functions, and our introduced algorithms (*Dynamic Memory-Update*, TRUE, ICF, MCG, Majority). Following are where you can find each algorithm:
 - ***Dynamic Memory-Update:*** Lines 235-299
 - **TRUE:** Lines 301-354
@@ -66,7 +69,7 @@ We have thoroughly documented all our functions, and our introduced algorithms (
 - **MCG:** Lines 651-654
 - **Majority:** Lines 656-659
 
-### **5. Notes for Reproducibility**
+### **6. Notes for Reproducibility**
 - Important: This code is designed to run on CPU only. GPU support will be added soon.
 - Results are averaged over multiple runs, as described in the paper. For consistency, ensure the random seeds are set as in the scripts.
 - Logs and outputs will include key metrics and figures to match the results in the paper.
