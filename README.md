@@ -70,7 +70,7 @@ We have thoroughly documented all our functions, and our introduced algorithms (
 - **Majority:** Lines 656-659
 
 ### **6. Notes for Reproducibility**
-- Important: This code is designed to run on CPU only. GPU support will be added soon.
+- Important: This code is designed to run on CPU only. All our TMLR results were reported by running experiments on the CPU. GPU support will be added soon.
 - Results are averaged over multiple runs, as described in the paper. For consistency, ensure the random seeds are set as in the scripts.
 - Logs and outputs will include key metrics and figures to match the results in the paper.
 
