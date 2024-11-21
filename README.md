@@ -37,8 +37,9 @@ For visualizing results,
 - Selective Response Filters Comparison - `python3 ./visualization/compare-filtering.py`
 - Lifelong Learning (Performance on (1) pre-trained data, (2) untrained data (future tasks), (3) Past Trained (tasks introduced so far), (4) Complete Test set)
   - `python3 ./visualization/lifelong_results.py`
+- QA's Increasing Confidence in Tasks and Subsequent Need for Less Communication - `python3 ./visualization/reducing.py`
  
-We have included simple and short instructions to run each of these files correctly (filename etc.) in the respective files.
+We have included simple and short instructions on how to run each of these files correctly (filename, etc.) in the respective files.
 
 
 ### **4. Customizing Communication Protocols**
