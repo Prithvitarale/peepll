@@ -17,41 +17,42 @@ import seaborn as sns
 # 2 -> QA Accuracy on Untrained data (Future Tasks)
 # 3 -> QA Accuracy on Past data (tasks learned until that timestep)
 # 4 -> QA Accuracy on Complete Test Set
-experiment_number = 1
+experiment_number = 4
 
 # C. Find Figure saved as 'performances.png'
 
 # TRUE
-with open('./finalruns_cifar100_reducing_meorig_2.0_1.pkl', 'rb') as f:
+# with open('./finalruns_cifar100_reducing_meorig_2.0_1.pkl', 'rb') as f:
+with open('./finalruns_imgnet_reducingqc4_2.0_1.pkl', 'rb') as f:
     info = pickle.load(f)
 
-# TRUE + ICF
-with open('./finalruns_imgnet_vanclash_s1_2.0_1.pkl', 'rb') as f:
-    info_e = pickle.load(f)
+# # TRUE + ICF
+# with open('./finalruns_imgnet_vanclash_s1_2.0_1.pkl', 'rb') as f:
+#     info_e = pickle.load(f)
 
-# MCG
-with open('./finalruns_imgnet_conf_s1_2.0_1.pkl', 'rb') as f:
-    info_mo = pickle.load(f)
+# # MCG
+# with open('./finalruns_imgnet_conf_s1_2.0_1.pkl', 'rb') as f:
+#     info_mo = pickle.load(f)
 
-# MCG+ICF
-with open('./finalruns_imgnet_confclash_s1_2.0_1.pkl', 'rb') as f:
-    info_mo_e = pickle.load(f)
+# # MCG+ICF
+# with open('./finalruns_imgnet_confclash_s1_2.0_1.pkl', 'rb') as f:
+#     info_mo_e = pickle.load(f)
 
-# Majority
-with open('./finalruns_imgnet_maj_s1_2.0_1.pkl', 'rb') as f:
-    info_m = pickle.load(f)
+# # Majority
+# with open('./finalruns_imgnet_maj_s1_2.0_1.pkl', 'rb') as f:
+#     info_m = pickle.load(f)
 
-# Majority + ICF
-with open('./finalruns_imgnet_majclash_s1_2.0_1.pkl', 'rb') as f:
-    info_m_e = pickle.load(f)
+# # Majority + ICF
+# with open('./finalruns_imgnet_majclash_s1_2.0_1.pkl', 'rb') as f:
+#     info_m_e = pickle.load(f)
 
-# Entropy
-with open('./finalruns_imgnet_ent_s1_3_2.0_1.pkl', 'rb') as f:
-    info_ent = pickle.load(f)
+# # Entropy
+# with open('./finalruns_imgnet_ent_s1_3_2.0_1.pkl', 'rb') as f:
+#     info_ent = pickle.load(f)
 
-# Supervised + Replay (ER)
-with open('./finalruns_imgnet_single_s1_2.0_1.pkl', 'rb') as f:
-    info_single = pickle.load(f)
+# # Supervised + Replay (ER)
+# with open('./finalruns_imgnet_single_s1_2.0_1.pkl', 'rb') as f:
+#     info_single = pickle.load(f)
 
 
 ###### END: Experiment Setup #####
@@ -84,9 +85,9 @@ sns.set_style("whitegrid", {
 
 fig, ax = plt.subplots()
 
-for x in range(0, len(info_single[experiment_number][0]), 50):
+for x in range(0, len(info[experiment_number][0]), 50):
     plt.axvline(x=x, color='cornflowerblue', linestyle='--', alpha=1)
-    if x+3 < len(info_single[0]):  # To ensure the label is within the plot range
+    if x+3 < len(info[0]):  # To ensure the label is within the plot range
         plt.text(x + 25, plt.ylim()[0], str(x // 49 + 1), ha='center', va='bottom', color='royalblue', alpha=1)
 
 
@@ -102,16 +103,16 @@ elif experiment_number == 4:
 ax.set_xlabel('Task ID / Time')
 ax.set_ylabel('Accuracy (%)')
 
-
+pdb.set_trace()
 window_size = 30
 ax.plot(range(len(info[experiment_number][0]) - window_size + 1), moving_average(100*np.array(info[experiment_number][0]), window_size), color='y', label='TRUE', linestyle='dashdot')
-ax.plot(range(len(info_e[experiment_number][0]) - window_size + 1), moving_average(100*np.array(info_e[experiment_number][0]), window_size), color='y', label='TRUE+ICF', linestyle='-')
-ax.plot(range(len(info_m[experiment_number][0]) - window_size  + 1), moving_average(100*np.array(info_m[experiment_number][0]), window_size), color='darkgreen', linestyle="dashdot", label='Majority')
-ax.plot(range(len(info_m_e[experiment_number][0]) - window_size  + 1), moving_average(100*np.array(info_m_e[experiment_number][0]), window_size), color='darkgreen', label='Majority+ICF')
-ax.plot(range(len(info_mo[experiment_number][0]) - window_size + 1), moving_average(100*np.array(info_mo[experiment_number][0]), window_size), color='cornflowerblue', label='MCG', linestyle="dashdot")
-ax.plot(range(len(info_mo_e[experiment_number][0]) - window_size + 1), moving_average(100*np.array(info_mo_e[experiment_number][0]), window_size), color='cornflowerblue', label='MCG+ICF')
-ax.plot(range(len(info_ent[experiment_number][0]) - window_size + 1), moving_average(100*np.array(info_ent[experiment_number][0]), window_size), color='dimgray', label='Entropy')
-ax.plot(range(len(info_single[experiment_number][0]) - window_size + 1), moving_average(100*np.array(info_single[experiment_number][0]), window_size), color='tomato', label='Single-Agent')
+# ax.plot(range(len(info_e[experiment_number][0]) - window_size + 1), moving_average(100*np.array(info_e[experiment_number][0]), window_size), color='y', label='TRUE+ICF', linestyle='-')
+# ax.plot(range(len(info_m[experiment_number][0]) - window_size  + 1), moving_average(100*np.array(info_m[experiment_number][0]), window_size), color='darkgreen', linestyle="dashdot", label='Majority')
+# ax.plot(range(len(info_m_e[experiment_number][0]) - window_size  + 1), moving_average(100*np.array(info_m_e[experiment_number][0]), window_size), color='darkgreen', label='Majority+ICF')
+# ax.plot(range(len(info_mo[experiment_number][0]) - window_size + 1), moving_average(100*np.array(info_mo[experiment_number][0]), window_size), color='cornflowerblue', label='MCG', linestyle="dashdot")
+# ax.plot(range(len(info_mo_e[experiment_number][0]) - window_size + 1), moving_average(100*np.array(info_mo_e[experiment_number][0]), window_size), color='cornflowerblue', label='MCG+ICF')
+# ax.plot(range(len(info_ent[experiment_number][0]) - window_size + 1), moving_average(100*np.array(info_ent[experiment_number][0]), window_size), color='dimgray', label='Entropy')
+# ax.plot(range(len(info_single[experiment_number][0]) - window_size + 1), moving_average(100*np.array(info_single[experiment_number][0]), window_size), color='tomato', label='Single-Agent')
 
 ax.set_ybound(0)
 ax.legend(loc=2)

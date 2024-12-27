@@ -15,7 +15,8 @@ def load_data(filename):
 # A. Set FILENAME - This is the 'experiments_data' (variable)
 # saved in the very end of "peell_cifar.py" or "peell_miniImageNet.py"
 # filenames2 = [f'./_{i}thresh_exper_data_2.0_1.pkl' for i in range(49, 54)]
-filenames2 = [f'./_{i}thresh_exper_data_2.0_1.pkl' for i in range(49, 54)]
+# filenames2 = [f'./_{i}thresh_exper_data_2.0_1.pkl' for i in range(49, 54)]
+filenames2 = [f'./accept_modular_exp5_test_c_data_2.0_1.pkl']
 
 # B. Set Experiment type -
 # 1 -> Total RA responses on x-axis
@@ -67,8 +68,9 @@ for all_data in all_data_:
 
     for data in all_data:
         if dataset == 2:
-            # (pick_all_corr_experiment, pick_all_total_experiment, _, _, _, _, _, _, _, _, a, b, entropy_corr_experiment, entropy_tot_experiment, _, _, _) = [np.cumsum(np.array(i), axis=0) for i in data]
-            (pick_all_corr_experiment, pick_all_total_experiment, _, _, _, _, _, _, _, _, a, b, entropy_corr_experiment, entropy_tot_experiment, _) = [np.cumsum(np.array(i), axis=0) for i in data]
+            # pdb.set_trace()
+            (pick_all_corr_experiment, pick_all_total_experiment, _, _, _, _, _, _, _, _, a, b, entropy_corr_experiment, entropy_tot_experiment, _, _, _) = [np.cumsum(np.array(i), axis=0) for i in data]
+            # (pick_all_corr_experiment, pick_all_total_experiment, _, _, _, _, _, _, _, _, a, b, entropy_corr_experiment, entropy_tot_experiment, _) = [np.cumsum(np.array(i), axis=0) for i in data]
         else:
             (pick_all_corr_experiment, pick_all_total_experiment, _, _, _, _, _, _, _, _, a, b, entropy_corr_experiment, entropy_tot_experiment, _) = [np.cumsum(np.array(i), axis=0) for i in data]
         pick_all_corr_experiment_agg.append(pick_all_corr_experiment[-1])
