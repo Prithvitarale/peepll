@@ -3,6 +3,8 @@ import tensorflow as tf
 from tensorflow import keras
 from utils.peepll_utils import identify_from_memory_scalable_forkl, call_response_agent, update_memory
 
+# This script has the main communication method that handles evaluating confidence, making calls to RAs
+# receiving and filtering RA responses. The QA then learns from these responses and updates its memory.
 
 # ================================#
 ####  Main Communication Method ####
@@ -140,7 +142,7 @@ def communication(
         query_agent_confidences = q_c
         shared_variables.avg_qa_conf.append(np.mean(query_agent_confidences))
 
-        aa_thresholds, entropy_threshold = [0.585], [1]
+        aa_thresholds, entropy_threshold = [0.735], [1]
         if config.true_results == 1:
             aa_thresholds, entropy_threshold = np.arange(0, 1.0, 0.01).tolist(), np.arange(0, 1.0, 0.01).tolist()
         print(f"All Confidence thresholds: {aa_thresholds}")
@@ -539,8 +541,8 @@ def communication(
         print("Memory Information")
         print("num memorized before", len(orig_model.memorized_data), np.unique(orig_model.memorized_targets))
 
-        learn_x, learn_y = shared_x_m_e_orig, shared_y_m_e_orig
-        learn_confidences = confidences_x_m_e_orig
+        learn_x, learn_y = shared_x_m, shared_y_m
+        learn_confidences = confidences_x_m
         learnable_data = len(learn_x)
         learn_total_len = learnable_data
 

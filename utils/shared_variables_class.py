@@ -1,3 +1,8 @@
+# This script allows us to create a class of variables that keep track of
+# the QA's and Confidence metrics' performance.
+
+
+
 class SharedVariables:
     def __init__(self, total_num_models):
         self.communication_calls = []

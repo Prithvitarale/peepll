@@ -1,5 +1,6 @@
 import numpy as np
 
+# This script has functions to retrieve data specific to classes.
 
 # Function Description:
 # Takes data and classes, and returns data of those classes alone.

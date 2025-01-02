@@ -1,5 +1,13 @@
 import numpy as np
 import tensorflow as tf
+
+
+# This script has functions that help
+# 1. update an agent's memory using our Dynamic Memory Update,
+# 2. evaluate an agent's TRUE confidence, 
+# 3. initiating calls to RAs.
+
+
 # ================================================================================================#
                             ### DYNAMIC MEMORY UPDATE METHOD ###
 # Function Description:

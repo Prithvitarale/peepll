@@ -6,7 +6,8 @@ from tensorflow.keras.callbacks import Callback, EarlyStopping
 from tensorflow.keras import layers
 from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
 
-
+# This script has functions to define, build and pretrain the model.
+# It also has a function to load memories into the model for its pretraining data.
 
 # Function Description: Early Stopping Mechanism
 # for Pre-training models. Not used in Lifelong Learning.
@@ -113,8 +114,8 @@ class VAE(keras.Model):
             kl_loss = tf.reduce_mean(tf.reduce_sum(kl_loss, axis=1))
 
             if self.train_mode == 0:
-                # total_loss = reconstruction_loss + tf.reduce_mean(0.00396*(kl_loss)) # minimgnet
-                total_loss = reconstruction_loss + tf.reduce_mean(0.007*(kl_loss)) # cifar
+                total_loss = reconstruction_loss + tf.reduce_mean(0.00396*(kl_loss)) # minimgnet
+                # total_loss = reconstruction_loss + tf.reduce_mean(0.007*(kl_loss)) # cifar
             else:
                 raise RuntimeError("invalid train_mode", self.train_mode)
 
@@ -169,8 +170,8 @@ def build_model_data(
     y_train_i = keras.utils.to_categorical(y_train_i, num_classes)
     y_test_i = keras.utils.to_categorical(y_test_i, num_classes)
     model_i = VAE(input_shape, confidence_threshold=confidence_threshold, latent_dim=512)
-    # optimizer = tf.keras.optimizers.Adam(learning_rate = 0.00004, weight_decay=0.28) # imgnet
-    optimizer = tf.keras.optimizers.Adam(learning_rate = 0.000006) # cifar
+    optimizer = tf.keras.optimizers.Adam(learning_rate = 0.00004, weight_decay=0.28) # imgnet
+    # optimizer = tf.keras.optimizers.Adam(learning_rate = 0.000006) # cifar
     model_i.compile(optimizer=optimizer, metrics=["accuracy"])
     return x_train_i, y_train_i, x_test_i, y_test_i, model_i
 
