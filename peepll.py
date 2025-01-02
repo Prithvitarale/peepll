@@ -34,8 +34,25 @@ from utils.shared_variables_class import SharedVariables
 
 ####### NOTE: GPU usage currently not supported. ####### 
 
-# dataset = "MiniImgNet"
-dataset = "cifar100"
+parser = argparse.ArgumentParser(description="Run experiments with given dataset and settings.")
+    
+# Define the arguments
+parser.add_argument('--dataset', type=str, required=True, help="Dataset (M for MiniImageNet, C for CIFAR100)")
+parser.add_argument('--experiment_id', type=float, required=True, help="ID of the experiment (2.2 for Communication and LL, 5 for TRUE and Filter results)")
+parser.add_argument('--learning_type', type=int, required=True, help="Type of learning (2 for Supervised, 3 for Communicative)")
+
+# Parse the arguments
+args = parser.parse_args()
+
+# Access the arguments
+print(f"Dataset: {args.dataset}")
+print(f"Experiment ID: {args.experiment_id}")
+print(f"Learning Type: {args.learning_type}")
+
+if args.dataset == "M":
+    dataset = "MiniImgNet"
+else:
+    dataset = "cifar100"
 
 #####################
 #   Experiment IDs
@@ -46,8 +63,10 @@ dataset = "cifar100"
 # learning_type = 3 --> Communicative (1 model communicates with 19 others)
 #####################
 
-experiment_version = 2.2
-input_learning_type = 3
+experiment_version = args.experiment_id
+input_learning_type = args.learning_type
+
+pdb.set_trace()
 
 #####################
 #   Main
@@ -62,6 +81,9 @@ print("="*100)
 
 #####################
 #   default configs
+
+
+
 
 config = argparse.Namespace()
 
@@ -232,8 +254,8 @@ try:
         mi.build(input_shape_b)
     # -models
     for i, mi in enumerate(modelN):
-        mi.load_weights(f'/work/pi_hava_umass_edu/prithvi/save_cifar100/save_cifar100/{i+1}_newdatakl5_{config.figure_i}.h5')
-        # mi.load_weights(f'/work/pi_hava_umass_edu/prithvi/save_mimgnet/{i+1}_imgnetpre6_{config.figure_i}.h5')
+        # mi.load_weights(f'/work/pi_hava_umass_edu/prithvi/save_cifar100/save_cifar100/{i+1}_newdatakl5_{config.figure_i}.h5')
+        mi.load_weights(f'/work/pi_hava_umass_edu/prithvi/save_mimgnet/{i+1}_imgnetpre6_{config.figure_i}.h5')
         print(f'loaded model {i}')
         loaded = i
     loaded_weights = True
@@ -424,7 +446,7 @@ for task_id, x_train in enumerate(task_wise_x):
                 shared_variables.count_correctly_shared_possible,
                 shared_variables.error_wrong_shared,
             )
-            with open(f"./accept_modular_cc_c2_test_{config.figure_i}.pkl", 'wb') as f:
+            with open(f"./accept_modular_cc_m2_test_{config.figure_i}.pkl", 'wb') as f:
                 pickle.dump(graphing_data, f)
 
             experiments_data = (
@@ -454,5 +476,5 @@ for task_id, x_train in enumerate(task_wise_x):
                 shared_variables.avg_qa_conf,
             )
             print("seed=1, cc")
-            with open(f"./accept_modular_cc_test_c2_data_{config.figure_i}.pkl", 'wb') as f:
+            with open(f"./accept_modular_cc_test_m2_data_{config.figure_i}.pkl", 'wb') as f:
                 pickle.dump(experiments_data, f)
