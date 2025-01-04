@@ -3,14 +3,10 @@
 This repository contains the implementation of the **Peer Parallel Lifelong Learning (PEEPLL)** framework for distributed multi-agent lifelong learning. The scripts provided reproduce the results presented in our paper.
 
 ## **Overview**
-- **Default Protocols**:  
-  - For **CIFAR100**, the script runs **TRUE + REFINE** (our best-performing protocol).  
-  - For **MiniImageNet**, the script runs **TRUE + Majority** (our best-performing protocol).
-- **Experiment Selection**:
-  - In `both peell_cifar.py` and `peell_miniImageNet.py`, use the `experiment_number` variable on line 1304 to choose between experiments for **PEEPLL with communication (2.2)** or **TRUE results (5)**:
-    - `2.2` → PEEPLL with Communication (default)
-    - `5.0` → TRUE Results
-
+- For CIFAR100 and MiniImageNet, the `peepll.py` script simulates lifelong learning through peer-to-peer communication.
+- **Protocols**:
+  - For **CIFAR100**, **TRUE + REFINE** is our best-performing protocol.  
+  - For **MiniImageNet**, **TRUE + Majority** is our best-performing protocol.
 ---
 
 ## **Usage Instructions**
@@ -24,28 +20,25 @@ To install all necessary dependencies, create a Conda environment using the prov
 If you wish to use our saved pre-trained models, they can be found [here](https://drive.google.com/drive/folders/1kA5V5Rp-ZN5QgPtfKJ8SusCl8DEKm42L?usp=sharing).
 
 ### **3. Run the Scripts**
-Use the following commands to run experiments for the respective datasets:
+The following are the instructions to reproduce the experiments:
+Run `./python3 peepll.py --dataset --experiment_id --learning_type`
 
-- CIFAR100: `python3 peell_cifar.py`
-
-- MiniImageNet: `python3 peell_miniImageNet.py`
-
-By default, these will reproduce the TRUE + REFINE results for CIFAR100 and TRUE + Majority results for MiniImageNet, our best performing Communication Protocols for respective datasets.
+- '--dataset': M for MiniImageNet, C for CIFAR100 (input type: string)
+- '--experiment_id': 2.2 for Communication and LL, 5 for TRUE and Filter results (input type: float)
+- '--learning_type': 2 for Supervised, 3 for Communicative (input type: integer)
 
 For visualizing results, 
 - TRUE vs Entropy: `python3 ./visualization/compare-entropy-ours.py`
 - Selective Response Filters Comparison - `python3 ./visualization/compare-filtering.py`
-- Lifelong Learning (Performance on (1) pre-trained data, (2) untrained data (future tasks), (3) Past Trained (tasks introduced so far), (4) Complete Test set)
-  - `python3 ./visualization/lifelong_results.py`
+- Lifelong Learning (Performance on (1) pre-trained data, (2) untrained data (future tasks), (3) Past Trained (tasks introduced so far), (4) Complete Test set) - `python3 ./visualization/lifelong_results.py`
 - QA's Increasing Confidence in Tasks and Subsequent Need for Less Communication - `python3 ./visualization/reducing.py`
  
 We have included simple and short instructions on how to run each of these files correctly (filename, etc.) in the respective files.
 
-
 ### **4. Customizing Communication Protocols**
-To run different communication protocols, update the following lines in the script:
+To run different communication protocols, update the following lines in `communication.py` under `utils/`:
 
-#### 1. Line 905-906: Modify (a, b, c) values:
+#### 1. Line 544-545: Modify (a, b, c) values:
 - learn_x, learn_y = a, b
 - learn_confidences = c
 
@@ -59,18 +52,16 @@ Use the following mappings for `(a, b, c)`:
 - **TRUE + MCG**: `shared_x_m_orig, shared_y_m_orig, confidences_x_m_orig`
 - **TRUE + MCG + ICF (REFINE)**: `shared_x_m_e_orig, shared_y_m_e_orig, confidences_x_m_e_orig`
 
-Recommended thresholds for a 1:1 Sharing Ratio are given on lines 435-442.
 
-
-#### 2. Line 506: Adjust the aa_threshold if needed: aa_threshold = [value]
+#### 2. Line 145: Adjust the aa_threshold if needed: aa_threshold = [value]
+Recommended thresholds for a 1:1 Sharing Ratio are given on lines 60-77.
 
 ### **5. Our Algorithms**
 We have thoroughly documented all our functions, and our introduced algorithms (*Dynamic Memory-Update*, TRUE, ICF, MCG, Majority). Following are where you can find each algorithm:
-- ***Dynamic Memory-Update:*** Lines 235-299
-- **TRUE:** Lines 301-354
-- **ICF:** Lines 476-493 and Lines 534-553
-- **MCG:** Lines 651-654
-- **Majority:** Lines 656-659
+- ***Dynamic Memory-Update*** and **TRUE:** `peepll_utils.py`
+- **ICF:** Lines 176-189 in `communication.py`
+- **MCG:** Lines 292-293 in `communication.py`
+- **Majority:** Lines 297-298 in `communication.py`
 
 ### **6. Notes for Reproducibility**
 - Important: This code is designed to run on CPU only. All our TMLR results were reported by running experiments on the CPU. GPU support will be added soon.
