@@ -1,4 +1,4 @@
-# PEEPLL Framework Codebase
+# Distributed Mult-Agent Lifelong Learning (PEEPLL Framework)
 
 Official repository of [Distributed Multi-Agent Lifelong Learning](https://openreview.net/forum?id=IIVr4Hu3Oi) (TMLR 2025).
 
