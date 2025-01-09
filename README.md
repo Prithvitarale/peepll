@@ -1,6 +1,8 @@
 # PEEPLL Framework Codebase
 
-This repository contains the implementation of the **Peer Parallel Lifelong Learning (PEEPLL)** framework for distributed multi-agent lifelong learning. The scripts provided reproduce the results presented in our paper.
+Official repository of [Distributed Multi-Agent Lifelong Learning](https://openreview.net/forum?id=IIVr4Hu3Oi) (TMLR 2025).
+
+This repository contains the implementation of the **Peer Parallel Lifelong Learning (PEEPLL)** framework for distributed multi-agent lifelong learning. The scripts provided reproduce the results presented in the paper. To review specific implementations of our proposed methods in the paper, see Section 5 below.
 
 ## **Overview**
 - For CIFAR100 and MiniImageNet, the `peepll.py` script simulates lifelong learning through peer-to-peer communication.
